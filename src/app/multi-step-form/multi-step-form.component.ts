@@ -52,9 +52,9 @@ export class MultiStepFormComponent {
   ];
 
   plans: Plan[] = [
-    { icon: '/assets/images/icon-arcade.svg', name: 'Arcade', price: { month: 9, year: 90 } },
-    { icon: '/assets/images/icon-advanced.svg', name: 'Advanced', price: { month: 12, year: 120 } },
-    { icon: '/assets/images/icon-pro.svg', name: 'Pro', price: { month: 15, year: 150 } },
+    { icon: './assets/images/icon-arcade.svg', name: 'Arcade', price: { month: 9, year: 90 } },
+    { icon: './assets/images/icon-advanced.svg', name: 'Advanced', price: { month: 12, year: 120 } },
+    { icon: './assets/images/icon-pro.svg', name: 'Pro', price: { month: 15, year: 150 } },
   ];
 
   addOns: AddOn[] = [
