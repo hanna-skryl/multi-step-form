@@ -42,8 +42,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/hanna-skryl/multi-step-form.git)
-- Live Site URL: [Add live site URL here](https://hanna-skryl.github.com/multi-step-form)
+- Solution URL: [GitHub repo](https://github.com/hanna-skryl/multi-step-form)
+- Live Site URL: [GitHub Pages](https://hanna-skryl.github.io/multi-step-form/)
 
 ## My process
 
