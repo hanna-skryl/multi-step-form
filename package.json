@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --output-path docs --base-href /multi-step-form/ --deploy-url /multi-step-form/"
+    "build": "ng build --configuration=production"
   },
   "dependencies": {
     "@angular/animations": "^17.2.0",

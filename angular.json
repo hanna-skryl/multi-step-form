@@ -17,6 +17,7 @@
               "sourceMap": true
             },
             "production": {
+              "baseHref": "/multi-step-form/",
               "aot": true,
               "extractLicenses": true,
               "namedChunks": false,

@@ -31,11 +31,11 @@
     height: 100%;
     bottom: 0;
     right: 0;
-    background: center / cover no-repeat url('/assets/images/bg-sidebar-mobile.svg');
+    background: center / cover no-repeat url('../../../../assets/images/bg-sidebar-mobile.svg');
     z-index: 1;
 
     @media (min-width: 768px) {
-      background-image: url('/assets/images/bg-sidebar-desktop.svg');
+      background-image: url('../../../../assets/images/bg-sidebar-desktop.svg');
     }
   }
 }
