@@ -5,7 +5,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "demo": {
+    "multi-step-form": {
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -44,10 +44,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "development": {
-              "buildTarget": "demo:build:development"
+              "buildTarget": "multi-step-form:build:development"
             },
             "production": {
-              "buildTarget": "demo:build:production"
+              "buildTarget": "multi-step-form:build:production"
             }
           },
           "defaultConfiguration": "development"
