@@ -20,7 +20,7 @@
     flex-direction: column;
     justify-content: flex-start;
     border-radius: 12px;
-    padding: 30px 50px 0 25px;
+    padding: 35px 85px 0 30px;
     margin-bottom: 0;
   }
 
@@ -60,8 +60,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 32px;
-  width: 32px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   border: 1px solid var(--white);
   color: var(--white);
@@ -85,8 +85,9 @@
 }
 
 .step-title {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 700;
   text-transform: uppercase;
   color: var(--white);
+  letter-spacing: 1px;
 }
