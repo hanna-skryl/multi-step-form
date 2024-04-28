@@ -27,7 +27,7 @@
           },
           "options": {
             "assets": ["src/assets", "src/assets/*"],
-            "index": "docs/index.html",
+            "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "inlineStyleLanguage": "scss",
