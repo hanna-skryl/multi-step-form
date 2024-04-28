@@ -1,0 +1,130 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  margin: auto;
+
+  @media (min-width: 768px) {
+    position: fixed;
+    height: min-content;
+    min-height: 500px;
+    width: min(800px, 100%);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: var(--magnolia);
+  border-radius: 16px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding: 10px;
+    background-color: var(--white);
+    box-shadow: 2px 4px 12px 0 rgba(0, 0, 0, 0.08);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  z-index: 2;
+
+  @media (min-width: 768px) {
+    padding-inline: 55px;
+  }
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--white);
+  padding: 20px;
+}
+
+.form-step {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  padding: 30px 20px;
+  border-radius: 12px;
+  margin-inline: 10px;
+  z-index: 2;
+  box-shadow: 4px 12px 40px 6px rgba(0, 0, 0, 0.09);
+
+  @media (min-width: 768px) {
+    border-radius: 0;
+    margin-inline: 0;
+    box-shadow: none;
+  }
+}
+
+.form-title {
+  margin-block: 0 10px;
+
+  @media (min-width: 768px) {
+    font-size: 28px;
+  }
+}
+
+.form-subtitle {
+  margin-block: 0 20px;
+  color: var(--cool-gray);
+  padding-right: 50px;
+  font-size: 15px;
+
+  @media (min-width: 768px) {
+    margin-block: 0 30px;
+    padding-right: 0;
+  }
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  color: var(--cool-gray);
+  background-color: var(--light-gray);
+}
+
+button:focus-visible {
+  outline: 1px solid var(--purplish-blue);
+  outline-offset: 1px;
+}
+
+.button-previous {
+  color: var(--cool-gray);
+  background-color: transparent;
+  padding: 10px 0;
+
+  &:not([disabled]):hover {
+    color: var(--marine-blue);
+    cursor: pointer;
+  }
+}
+
+.button-next {
+  color: var(--magnolia);
+  background-color: var(--marine-blue);
+  margin-left: auto;
+
+  &:not([disabled]):hover {
+    filter: brightness(1.5);
+    cursor: pointer;
+  }
+}
+
+.button-submit {
+  color: var(--magnolia);
+  background-color: var(--purplish-blue);
+
+  &:hover {
+    opacity: 0.75;
+    cursor: pointer;
+  }
+}

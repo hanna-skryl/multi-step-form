@@ -1,0 +1,44 @@
+@if (info(); as info) {
+  <ng-container [formGroup]="info">
+    <form>
+      <div class="form-field">
+        <label for="name" [class.error]="info.controls.name.touched && info.controls.name.errors?.['required']"
+          ><span>Name</span>
+          @if (info.controls.name.touched && info.controls.name.errors?.['required']) {
+            <span class="form-error">This field is required.</span>
+          }
+        </label>
+        <input #firstInput formControlName="name" type="text" name="name" placeholder="e.g. Stephen King" />
+      </div>
+
+      <div class="form-field">
+        <label
+          for="email"
+          [class.error]="
+            (info.controls.email.touched && info.controls.email.errors?.['required']) ||
+            (info.controls.email.touched && info.controls.email.errors?.['email'])
+          "
+        >
+          <span>Email Address</span>
+          @if (info.controls.email.touched && info.controls.email.errors?.['required']) {
+            <div class="form-error">This field is required.</div>
+          }
+          @if (info.controls.email.touched && info.controls.email.errors?.['email']) {
+            <div class="form-error">This field should be a valid email.</div>
+          }
+        </label>
+        <input formControlName="email" type="email" name="email" placeholder="e.g. stephenking@lorem.com" />
+      </div>
+
+      <div class="form-field">
+        <label for="phone" [class.error]="info.controls.phone.touched && info.controls.phone.errors?.['required']">
+          <span>Phone Number</span>
+          @if (info.controls.phone.touched && info.controls.phone.errors?.['required']) {
+            <div class="form-error">This field is required.</div>
+          }
+        </label>
+        <input formControlName="phone" type="text" name="phone" placeholder="e.g. +1 234 567 890" />
+      </div>
+    </form>
+  </ng-container>
+}

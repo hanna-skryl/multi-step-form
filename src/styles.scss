@@ -1,0 +1,35 @@
+@import 'styles/variables';
+@import 'styles/fonts';
+
+body,
+html {
+  background-color: var(--magnolia);
+  color: var(--marine-blue);
+  font-family: 'Ubuntu', Tahoma, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  height: 100%;
+  margin: 0;
+}
+
+button {
+  font-family: 'Ubuntu', Tahoma, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  border: 0;
+  padding: 12px 16px;
+  border-radius: 4px;
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+    padding: 14px 24px;
+    border-radius: 8px;
+  }
+}
+
+input::placeholder {
+  font-family: 'Ubuntu', Tahoma, sans-serif;
+  font-weight: 500;
+  color: var(--cool-gray);
+}

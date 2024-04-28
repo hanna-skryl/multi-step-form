@@ -1,0 +1,59 @@
+<form class="form" [formGroup]="form">
+  <app-stepper [steps]="steps" [(currentStep)]="currentStep" />
+
+  <main class="form-group">
+    @if (!isSubmitted()) {
+      <div class="form-step">
+        <h2 class="form-title">{{ content[currentStep()].title }}</h2>
+        <p class="form-subtitle">{{ content[currentStep()].subtitle }}</p>
+
+        @switch (currentStep()) {
+          @case (0) {
+            <app-info [info]="currentGroup()" />
+          }
+          @case (1) {
+            <app-plan
+              [plan]="currentGroup()"
+              [content]="plans"
+              [(selectedFrequency)]="selectedFrequency"
+              [(selectedPlan)]="selectedPlan"
+            />
+          }
+          @case (2) {
+            <app-add-ons
+              [addOns]="currentGroup()"
+              [content]="addOns"
+              [frequency]="selectedFrequency"
+              [(selectedAddOns)]="selectedAddOns"
+            />
+          }
+          @case (3) {
+            <app-summary
+              [addOns]="selectedAddOns"
+              [frequency]="selectedFrequency"
+              [plan]="selectedPlan"
+              [(currentStep)]="currentStep"
+              [summary]="form.value"
+            />
+          }
+        }
+      </div>
+
+      <div class="buttons">
+        @if (currentStep() !== 0) {
+          <button type="button" class="button-previous" (click)="prev()">Go Back</button>
+        }
+        @if (currentStep() !== 3) {
+          <button type="button" class="button-next" (click)="next()" [disabled]="!currentGroup().valid">
+            Next Step
+          </button>
+        }
+        @if (currentStep() === 3) {
+          <button type="submit" class="button-submit" (click)="submit()">Confirm</button>
+        }
+      </div>
+    } @else {
+      <app-confirmation />
+    }
+  </main>
+</form>

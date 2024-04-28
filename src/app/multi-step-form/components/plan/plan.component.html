@@ -1,0 +1,53 @@
+@if (plan(); as plan) {
+  <ng-container [formGroup]="plan">
+    <form>
+      <div class="plan-types">
+        @for (item of content(); track item.name; let i = $index) {
+          <div class="plan-type">
+            <input
+              formControlName="type"
+              type="radio"
+              [id]="'planType-' + i"
+              class="plan-type-input hidden-input"
+              (change)="selectedPlan.set(item)"
+              [checked]="item === selectedPlan()"
+              [value]="item.name"
+              #inputRef
+            />
+            <label [for]="'planType-' + i" class="plan-type-label">
+              <img [src]="item.icon" [alt]="item.name" width="40" height="40" />
+              <div class="plan-type-label-text">
+                <h3>{{ item.name }}</h3>
+                <p class="plan-type-price">
+                  ${{ selectedFrequency() === FREQUENCY.monthly ? item.price.month + '/mo' : item.price.year + '/yr' }}
+                </p>
+                <p [ngClass]="selectedFrequency() === FREQUENCY.monthly ? 'yearly-bonus--hidden' : 'yearly-bonus'">
+                  2 months free
+                </p>
+              </div>
+            </label>
+          </div>
+        }
+      </div>
+
+      <div class="toggle-switch">
+        <input
+          formControlName="frequency"
+          type="checkbox"
+          id="frequency"
+          class="toggle-input hidden-input"
+          (change)="updateSelectedFrequency($event)"
+        />
+        <label for="frequency" class="toggle-label">
+          <span [class.toggle-text--selected]="selectedFrequency() === FREQUENCY.monthly" class="toggle-text month"
+            >Monthly</span
+          >
+          <div class="toggle-handler"></div>
+          <span [class.toggle-text--selected]="selectedFrequency() === FREQUENCY.yearly" class="toggle-text year"
+            >Yearly</span
+          >
+        </label>
+      </div>
+    </form>
+  </ng-container>
+}

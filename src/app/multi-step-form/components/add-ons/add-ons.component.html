@@ -1,0 +1,28 @@
+@if (addOns(); as addOns) {
+  <ng-container [formGroup]="addOns">
+    <form>
+      <div formArrayName="items" class="add-ons">
+        @for (item of content(); track item.title; let i = $index) {
+          <label class="add-on" [for]="'add-on-' + i">
+            <input
+              #inputRef
+              type="checkbox"
+              class="add-on-input"
+              [id]="'add-on-' + i"
+              (change)="updateSelection(item)"
+              [checked]="selectedAddOns().includes(item)"
+            />
+            <span class="add-on-checkbox"></span>
+            <div>
+              <p class="add-on-title">{{ item.title }}</p>
+              <p class="add-on-subtitle">{{ item.subtitle }}</p>
+            </div>
+            <span class="add-on-price"
+              >+${{ isMonthlySubscription() ? item.price.month + '/mo' : item.price.year + '/yr' }}</span
+            >
+          </label>
+        }
+      </div>
+    </form>
+  </ng-container>
+}
