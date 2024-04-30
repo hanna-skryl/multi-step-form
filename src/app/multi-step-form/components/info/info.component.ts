@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 export type InfoGroup = {
@@ -15,12 +15,6 @@ export type InfoGroup = {
   styleUrl: './info.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InfoComponent implements AfterViewInit {
-  readonly firstInput = viewChild<ElementRef>('firstInput');
-
-  ngAfterViewInit() {
-    this.firstInput()?.nativeElement.focus();
-  }
-
+export class InfoComponent {
   info = input.required<FormGroup<InfoGroup>>();
 }

@@ -1,28 +1,26 @@
 <div class="summary">
   <div class="summary-plan">
     <div class="summary-plan-type">
-      <span class="summary-plan-label">{{ planType }}</span>
+      <span class="summary-plan-label">{{ planType() }}</span>
       <button class="summary-plan-change" (click)="goBack($event)">Change</button>
     </div>
-    <div class="summary-plan-price">${{ planPrice + priceSuffix }}</div>
+    <div class="summary-plan-price">{{ '$' + planPrice() + priceSuffix() }}</div>
   </div>
-  @if (addOns && addOns.length > 0) {
+  @if (addOns() && addOns().length > 0) {
     <hr />
   }
   <div class="summary-add-ons">
-    @for (addOn of addOns; track addOn?.title) {
+    @for (addOn of formattedAddOns(); track addOn.title) {
       @if (addOn) {
         <div class="summary-add-on">
           <span class="summary-add-on-type">{{ addOn.title }}</span>
-          <span class="summary-add-on-frequency"
-            >+${{ (isYearly ? addOn.price.year : addOn.price.month) + priceSuffix }}</span
-          >
+          <span class="summary-add-on-frequency">{{ '+$' + addOn.price + priceSuffix() }}</span>
         </div>
       }
     }
   </div>
 </div>
 <div class="summary-total">
-  <span class="summary-total-label">{{ footer }}</span>
-  <span class="summary-total-number">+${{ totalPrice + priceSuffix }}</span>
+  <span class="summary-total-label">{{ footer() }}</span>
+  <span class="summary-total-number">{{ '+$' + totalPrice() + priceSuffix() }}</span>
 </div>

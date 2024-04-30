@@ -1,12 +1,12 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, input, model, viewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Enum, InferValue } from 'better-enums';
 
 export type Plan = { icon: string; name: string; price: { month: number; year: number } };
 
 export type PlanGroup = {
-  type: FormControl<string>;
+  type: FormControl<Plan | null>;
   frequency: FormControl<boolean>;
 };
 
@@ -34,18 +34,5 @@ export class PlanComponent {
   updateSelectedFrequency(event: Event): void {
     const checkbox = event.target as HTMLInputElement;
     this.selectedFrequency.set(checkbox.checked ? FREQUENCY.yearly : FREQUENCY.monthly);
-  }
-
-  readonly inputRefs = viewChildren<ElementRef>('inputRef');
-
-  #focusFirstInput(): void {
-    if (this.inputRefs() && this.inputRefs().length > 0) {
-      this.inputRefs()[0].nativeElement.focus();
-      this.inputRefs()[0].nativeElement.click();
-    }
-  }
-
-  ngAfterViewInit() {
-    this.#focusFirstInput();
   }
 }

@@ -6,6 +6,7 @@ import { AddOn, AddOnsComponent, AddOnsGroup } from './components/add-ons/add-on
 import { SummaryComponent } from './components/summary/summary.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { MultiStepFormStore } from './multi-step-form.store';
 
 type MultiStepForm = {
   info: FormGroup<InfoGroup>;
@@ -67,9 +68,11 @@ export class MultiStepFormComponent {
     },
   ];
 
-  selectedAddOns: AddOn[] = [];
-  selectedFrequency: Frequency = FREQUENCY.monthly;
-  selectedPlan: Plan | null = null;
+  #store = inject(MultiStepFormStore);
+
+  selectedAddOns = this.#store.selectedAddOns();
+  selectedFrequency = this.#store.selectedFrequency();
+  selectedPlan = this.#store.selectedPlan();
 
   #fb = inject(FormBuilder);
 
@@ -83,7 +86,7 @@ export class MultiStepFormComponent {
     }),
 
     plan: this.#fb.group<PlanGroup>({
-      type: this.#fb.nonNullable.control('', Validators.required),
+      type: this.#fb.nonNullable.control(null, Validators.required),
       frequency: this.#fb.nonNullable.control<boolean>(false, Validators.required),
     }),
     addOns: this.#fb.group<AddOnsGroup>({

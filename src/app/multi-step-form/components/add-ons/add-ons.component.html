@@ -5,7 +5,6 @@
         @for (item of content(); track item.title; let i = $index) {
           <label class="add-on" [for]="'add-on-' + i">
             <input
-              #inputRef
               type="checkbox"
               class="add-on-input"
               [id]="'add-on-' + i"

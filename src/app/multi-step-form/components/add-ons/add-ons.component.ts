@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, ElementRef, input, model, viewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FREQUENCY, Frequency } from '../plan/plan.component';
 
@@ -39,17 +39,5 @@ export class AddOnsComponent {
         return items.filter(item => item.title !== addOn.title);
       });
     }
-  }
-
-  readonly inputRefs = viewChildren<ElementRef>('inputRef');
-
-  #focusFirstInput() {
-    if (this.inputRefs() && this.inputRefs().length > 0) {
-      this.inputRefs()[0].nativeElement.focus();
-    }
-  }
-
-  ngAfterViewInit() {
-    this.#focusFirstInput();
   }
 }

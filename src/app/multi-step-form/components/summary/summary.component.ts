@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, model, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { AddOn } from '../add-ons/add-ons.component';
 import { FREQUENCY, Frequency, Plan } from '../plan/plan.component';
 
@@ -9,49 +9,36 @@ import { FREQUENCY, Frequency, Plan } from '../plan/plan.component';
   styleUrl: './summary.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SummaryComponent implements OnInit {
-  @Input() summary?: any;
-  @Input() addOns?: AddOn[];
-  @Input() frequency?: Frequency;
-  @Input() plan?: Plan | null;
+export class SummaryComponent {
+  addOns = input.required<AddOn[]>();
+  frequency = input.required<Frequency>();
+  plan = input.required<Plan | null>();
 
-  isYearly = false;
-  planType = '';
-  planPrice = 0;
-  footer = '';
-  totalPrice = 0;
-  priceSuffix = '';
-  addOnsPrice = 0;
+  private isYearly = computed(() => this.frequency() === FREQUENCY.yearly);
+
+  priceSuffix = computed(() => (this.isYearly() ? '/yr' : '/mo'));
+  footer = computed(() => `Total (per ${this.isYearly() ? 'year' : 'month'})`);
+  planType = computed(() => `${this.plan()?.name} (${this.frequency()})`);
+  planPrice = computed(() => (this.isYearly() ? this.plan()?.price.year : this.plan()?.price.month) ?? 0);
+  totalPrice = computed(() => this.planPrice() + this.addOnsPrice());
+
+  addOnsPrice = computed(() => {
+    return (
+      this.addOns().reduce((total, addOn) => {
+        return total + (this.isYearly() ? addOn.price.year : addOn.price.month);
+      }, 0) ?? 0
+    );
+  });
+
+  formattedAddOns = computed(() => {
+    return this.addOns().map(item => {
+      return { title: item.title, price: this.isYearly() ? item.price.year : item.price.month };
+    });
+  });
 
   currentStep = model<number>();
 
   goBack(event: Event): void {
     this.currentStep.set(1);
-  }
-
-  ngOnInit(): void {
-    this.#calculatePricing();
-  }
-
-  #calculatePricing(): void {
-    this.isYearly = this.frequency === FREQUENCY.yearly;
-    this.priceSuffix = this.isYearly ? '/yr' : '/mo';
-    this.planType = `${this.plan?.name} (${this.frequency})`;
-    this.planPrice = this.#getPlanPrice();
-    this.footer = `Total (per ${this.isYearly ? 'year' : 'month'})`;
-    this.addOnsPrice = this.#calculateAddOnsPrice();
-    this.totalPrice = this.planPrice + this.addOnsPrice;
-  }
-
-  #getPlanPrice(): number {
-    return (this.isYearly ? this.plan?.price.year : this.plan?.price.month) ?? 0;
-  }
-
-  #calculateAddOnsPrice(): number {
-    return (
-      this.addOns?.reduce((total, addOn) => {
-        return total + (this.isYearly ? addOn.price.year : addOn.price.month);
-      }, 0) ?? 0
-    );
   }
 }
