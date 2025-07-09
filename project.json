@@ -1,0 +1,65 @@
+{
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "name": "multi-step-form",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "namedChunks": true,
+          "optimization": false,
+          "sourceMap": true
+        },
+        "production": {
+          "baseHref": "/multi-step-form/",
+          "aot": true,
+          "extractLicenses": true,
+          "namedChunks": false,
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false
+        }
+      },
+      "options": {
+        "assets": ["src/assets", "src/assets/*"],
+        "index": "src/index.html",
+        "browser": "src/main.ts",
+        "polyfills": ["zone.js"],
+        "inlineStyleLanguage": "scss",
+        "outputPath": "docs/",
+        "scripts": [],
+        "styles": ["src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["styles"]
+        },
+        "tsConfig": "tsconfig.app.json"
+      }
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "development": {
+          "buildTarget": "multi-step-form:build:development"
+        },
+        "production": {
+          "buildTarget": "multi-step-form:build:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    }
+  },
+  "prefix": "app",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss",
+      "changeDetection": "OnPush",
+      "skipTests": true
+    },
+    "@schematics/angular:service": {
+      "skipTests": true
+    }
+  },
+  "sourceRoot": "src"
+}
